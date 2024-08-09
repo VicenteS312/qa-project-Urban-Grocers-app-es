@@ -8,6 +8,7 @@ def get_kit_body(name):
 def positive_assert_for_kit_body(kit_body):
     kit_response = sender_stand_request.post_new_client_kit(kit_body)
     assert kit_response.status_code == 201
+    assert kit_response.json()['name'] == kit_body['name']
 
 def negative_assert_code_400(kit_body):
     kit_response = sender_stand_request.post_new_client_kit(kit_body)
@@ -17,6 +18,7 @@ def negative_assert_code_400(kit_body):
 def test_numero_permitido_de_caracteres_1():
     kit_body = get_kit_body("a")
     positive_assert_for_kit_body(kit_body)
+
 
 #2 El número permitido de caracteres (511)
 def test_numero_permitido_de_caracteres_511():
